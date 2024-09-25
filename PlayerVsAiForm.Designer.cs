@@ -42,95 +42,106 @@
             // 
             // buttonReRoll
             // 
-            buttonReRoll.Location = new Point(12, 318);
+            buttonReRoll.Location = new Point(20, 509);
+            buttonReRoll.Margin = new Padding(5, 5, 5, 5);
             buttonReRoll.Name = "buttonReRoll";
-            buttonReRoll.Size = new Size(126, 74);
+            buttonReRoll.Size = new Size(205, 118);
             buttonReRoll.TabIndex = 0;
             buttonReRoll.Text = "ReRoll";
             buttonReRoll.UseVisualStyleBackColor = true;
+            buttonReRoll.Click += buttonReRoll_Click;
             // 
             // buttonTakeScore
             // 
-            buttonTakeScore.Location = new Point(12, 398);
+            buttonTakeScore.Location = new Point(20, 637);
+            buttonTakeScore.Margin = new Padding(5, 5, 5, 5);
             buttonTakeScore.Name = "buttonTakeScore";
-            buttonTakeScore.Size = new Size(126, 36);
+            buttonTakeScore.Size = new Size(205, 58);
             buttonTakeScore.TabIndex = 1;
             buttonTakeScore.Text = "Stop and Score";
             buttonTakeScore.UseVisualStyleBackColor = true;
             // 
             // textBoxShotGunCount
             // 
-            textBoxShotGunCount.Location = new Point(204, 12);
+            textBoxShotGunCount.Location = new Point(332, 19);
+            textBoxShotGunCount.Margin = new Padding(5, 5, 5, 5);
             textBoxShotGunCount.Name = "textBoxShotGunCount";
             textBoxShotGunCount.ReadOnly = true;
-            textBoxShotGunCount.Size = new Size(125, 27);
+            textBoxShotGunCount.Size = new Size(201, 39);
             textBoxShotGunCount.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 19);
+            label1.Location = new Point(20, 30);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(110, 20);
+            label1.Size = new Size(182, 32);
             label1.TabIndex = 3;
             label1.Text = "Shotgun Count:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 52);
+            label2.Location = new Point(20, 83);
+            label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(186, 20);
+            label2.Size = new Size(304, 32);
             label2.TabIndex = 5;
             label2.Text = "Brains eaten from this turn:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(204, 49);
+            textBox1.Location = new Point(332, 78);
+            textBox1.Margin = new Padding(5, 5, 5, 5);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(125, 27);
+            textBox1.Size = new Size(201, 39);
             textBox1.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(550, 406);
+            label3.Location = new Point(894, 650);
+            label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(107, 20);
+            label3.Size = new Size(169, 32);
             label3.TabIndex = 9;
             label3.Text = "Total AI Brains:";
             // 
             // textBoxTotalAIBrains
             // 
-            textBoxTotalAIBrains.Location = new Point(663, 402);
+            textBoxTotalAIBrains.Location = new Point(1077, 643);
+            textBoxTotalAIBrains.Margin = new Padding(5, 5, 5, 5);
             textBoxTotalAIBrains.Name = "textBoxTotalAIBrains";
             textBoxTotalAIBrains.ReadOnly = true;
-            textBoxTotalAIBrains.Size = new Size(125, 27);
+            textBoxTotalAIBrains.Size = new Size(201, 39);
             textBoxTotalAIBrains.TabIndex = 8;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(524, 368);
+            label4.Location = new Point(852, 589);
+            label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(133, 20);
+            label4.Size = new Size(212, 32);
             label4.TabIndex = 7;
             label4.Text = "Total Player Brains:";
             // 
             // textBoxTotalPlayerBrains
             // 
-            textBoxTotalPlayerBrains.Location = new Point(663, 365);
+            textBoxTotalPlayerBrains.Location = new Point(1077, 584);
+            textBoxTotalPlayerBrains.Margin = new Padding(5, 5, 5, 5);
             textBoxTotalPlayerBrains.Name = "textBoxTotalPlayerBrains";
             textBoxTotalPlayerBrains.ReadOnly = true;
-            textBoxTotalPlayerBrains.Size = new Size(125, 27);
+            textBoxTotalPlayerBrains.Size = new Size(201, 39);
             textBoxTotalPlayerBrains.TabIndex = 6;
             // 
             // PlayerVsAiForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1300, 720);
             Controls.Add(label3);
             Controls.Add(textBoxTotalAIBrains);
             Controls.Add(label4);
@@ -141,6 +152,7 @@
             Controls.Add(textBoxShotGunCount);
             Controls.Add(buttonTakeScore);
             Controls.Add(buttonReRoll);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "PlayerVsAiForm";
             Text = "PlayerVsAiForm";
             ResumeLayout(false);

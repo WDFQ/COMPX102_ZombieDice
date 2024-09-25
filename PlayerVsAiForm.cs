@@ -16,5 +16,10 @@ namespace Zombie_Dice_Jeff_Jia
         {
             InitializeComponent();
         }
+
+        private void buttonReRoll_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

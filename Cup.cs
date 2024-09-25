@@ -15,13 +15,42 @@ namespace Zombie_Dice_Jeff_Jia
             diceList = new List<Die>();
         } 
 
-        public Die DrawDie()
+
+        /// <summary>
+        /// populates the cup with 6 green dies, 3 red and 4 yellow
+        /// </summary>
+       private void AddDices()
+       {
+            for (int i = 0; i < 6; i++)
+            {
+                GreenDie newGreenDie = new GreenDie();
+                diceList.Add(newGreenDie);
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                RedDie newRedDie = new RedDie();
+                diceList.Add(newRedDie);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                YellowDie newYellowDie = new YellowDie();
+                diceList.Add(newYellowDie);
+            }
+       }
+
+        public List<Die> DrawDice()
         {
             Random rand = new Random();
-            int result = rand.Next(0, diceList.Count);  // Random index from 0 to 5
-            return diceList[result];
+            List<Die> drawnDice = new List<Die>();
 
+            for (int i = 0; i < 3; i++)
+            {
+                int diceIndex = rand.Next(diceList.Count);
+                drawnDice.Add(diceList[diceIndex]);
+                diceList.RemoveAt(diceIndex);
+            }
 
+            return drawnDice;
         }
 
     }
