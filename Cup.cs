@@ -8,18 +8,25 @@ namespace Zombie_Dice_Jeff_Jia
 {
     public class Cup
     {
-        List<Die> diceList;
+        List<Die> _diceList;
 
         public Cup()
         {
-            diceList = new List<Die>();
+            _diceList = new List<Die>();
         } 
 
+        
+        public virtual DiceList<>
+        {
+            get {return _diceList;}
+            set {_diceList = value;}
+        }
+        
 
         /// <summary>
         /// populates the cup with 6 green dies, 3 red and 4 yellow
         /// </summary>
-       private void AddDices()
+       private void AddDice()
        {
             for (int i = 0; i < 6; i++)
             {
