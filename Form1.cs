@@ -13,11 +13,9 @@ namespace Zombie_Dice_Jeff_Jia
             // Create an instance of the new form (Form2)
             PlayerVsAiForm newForm = new PlayerVsAiForm();
 
-            // Show the new form
-            newForm.Show();
-
-            // Close the current form
             this.Hide();
+            PlayerVsAiForm.ShowDialog();
+            this.Close();
         }
 
         private void buttonVsPlayer_Click(object sender, EventArgs e)
