@@ -9,8 +9,13 @@ namespace Zombie_Dice_Jeff_Jia
     class RedDie : Die
     {
 
-        private string[] Faces = { "Brain", "Footsteps", "Footsteps", "Shotgun", "Shotgun", "Shotgun" };
+        private string[] _faces = { "Brain", "Footsteps", "Footsteps", "Shotgun", "Shotgun", "Shotgun" };
+        private Color _diceColor = Color.Red;
 
+        public Color DiceColor
+        {
+            get { return _diceColor; }
+        }
         public RedDie()
         {
         }
@@ -19,10 +24,14 @@ namespace Zombie_Dice_Jeff_Jia
         public override string Roll()
         {
             Random rand = new Random();
-            int result = rand.Next(0, Faces.Length);  // Random index from 0 to 5
-            return Faces[result];
+            int result = rand.Next(0, _faces.Length);  // Random index from 0 to 5
+            return _faces[result];
         }
 
+        public override Color GetDiceColor()
+        {
+            return DiceColor;
+        }
 
     }
 }

@@ -10,18 +10,24 @@ namespace Zombie_Dice_Jeff_Jia
 
         private void buttonVsAI_Click(object sender, EventArgs e)
         {
-            // Create an instance of the new form (Form2)
-            PlayerVsAiForm newForm = new PlayerVsAiForm();
+            // Create an instance of the new form 
+            PlayerVsAiForm pveForm = new PlayerVsAiForm();
 
-            // Show the new form
-            newForm.Show();
-
-            // Close the current form
+            //opens new form
             this.Hide();
+            pveForm.ShowDialog();
+            this.Close();
         }
 
         private void buttonVsPlayer_Click(object sender, EventArgs e)
         {
+            // Create an instance of the new form 
+            PlayerVsPlayerForm pvpForm = new PlayerVsPlayerForm();
+
+            //opens new form
+            this.Hide();
+            pvpForm.ShowDialog();
+            this.Close();
 
         }
     }

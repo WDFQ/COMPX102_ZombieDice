@@ -17,7 +17,7 @@ namespace Zombie_Dice_Jeff_Jia
 
 
         public abstract string Roll();
-
-
+        public abstract Color GetDiceColor();
+       
     }
 }

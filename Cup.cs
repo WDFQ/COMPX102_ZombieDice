@@ -8,36 +8,40 @@ namespace Zombie_Dice_Jeff_Jia
 {
     public class Cup
     {
-        List<Die> diceList;
+        public List<Die> _diceList;
 
         public Cup()
         {
-            diceList = new List<Die>();
+            _diceList = new List<Die>();
         } 
 
 
         /// <summary>
         /// populates the cup with 6 green dies, 3 red and 4 yellow
         /// </summary>
-       private void AddDices()
+       public void AddDices()
        {
             for (int i = 0; i < 6; i++)
             {
                 GreenDie newGreenDie = new GreenDie();
-                diceList.Add(newGreenDie);
+                _diceList.Add(newGreenDie);
             }
             for (int i = 0; i < 3; i++)
             {
                 RedDie newRedDie = new RedDie();
-                diceList.Add(newRedDie);
+                _diceList.Add(newRedDie);
             }
             for (int i = 0; i < 4; i++)
             {
                 YellowDie newYellowDie = new YellowDie();
-                diceList.Add(newYellowDie);
+                _diceList.Add(newYellowDie);
             }
        }
 
+        /// <summary>
+        /// Draws 3 dice from the dice list and returns it in a list of 3 dice
+        /// </summary>
+        /// <returns></returns>
         public List<Die> DrawDice()
         {
             Random rand = new Random();
@@ -45,9 +49,9 @@ namespace Zombie_Dice_Jeff_Jia
 
             for (int i = 0; i < 3; i++)
             {
-                int diceIndex = rand.Next(diceList.Count);
-                drawnDice.Add(diceList[diceIndex]);
-                diceList.RemoveAt(diceIndex);
+                int diceIndex = rand.Next(_diceList.Count);
+                drawnDice.Add(_diceList[diceIndex]);
+                _diceList.RemoveAt(diceIndex);
             }
 
             return drawnDice;
