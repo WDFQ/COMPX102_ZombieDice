@@ -50,8 +50,12 @@ namespace Zombie_Dice_Jeff_Jia
 
 
             //gets 3 dice from cup
-            drawnDiceList = cup.DrawDice();
+            for (int i = 0; i < 3; i++)
+            {
+                Die die = cup.DrawDie();
+                drawnDiceList.Add(die);
 
+            }
 
 
             //randomly decides who goes first
@@ -67,15 +71,13 @@ namespace Zombie_Dice_Jeff_Jia
                 SwitchPlayer2Turn();
                 labelCurrentTurnDisplay.Text = "Current Turn: Player 2";
             }
-
-
-
-
         }
 
         private void buttonReRoll_Click(object sender, EventArgs e)
         {
-            
+
+            CheckDieAmount();
+
             diceOutcomes[0] = drawnDiceList[0].Roll();
             diceColors[0] = drawnDiceList[0].GetDiceColor();
 
@@ -88,35 +90,151 @@ namespace Zombie_Dice_Jeff_Jia
             DiceOutcomeEvaluation(diceOutcomes[0], diceOutcomes[1], diceOutcomes[2]);
 
 
-            Update();
+            if (p1ShotgunCount >= 3)
+            {
+                MessageBox.Show("3 shotguns!, turn over.");
+                for (int i = setAsideDice.Count - 1; i >= 0; i--)
+                {
+                    cup._diceList.Add(setAsideDice[i]);
+                    setAsideDice.RemoveAt(i);  // Safely remove items by index
+                }
+
+                drawnDiceList.Clear();
+                setAsideDice.Clear();
+                ResetP1Counts();
+                SwitchPlayer2Turn();
+                Update();
+                NullLabels();
+            }
+            else
+            {
+                Update();
+            }
+
+            
 
         }
 
         private void buttonStopAndScore_Click(object sender, EventArgs e)
         {
-            foreach (Die item in setAsideDice)
+            for (int i = setAsideDice.Count - 1; i >= 0; i--)
             {
-                cup._diceList.Add(item);
-                setAsideDice.Remove(item);
+                cup._diceList.Add(setAsideDice[i]);
+                setAsideDice.RemoveAt(i);  // Safely remove items by index
             }
 
             player1.BrainsCount += p1BrainsCount;
+            drawnDiceList.Clear();
+            setAsideDice.Clear();
             ResetP1Counts();
+            SwitchPlayer2Turn();
+            
+
+            Update();
+            NullLabels();
 
         }
 
         private void buttonPlayer2ReRoll_Click(object sender, EventArgs e)
         {
 
+            CheckDieAmount();
+
+            diceOutcomes[0] = drawnDiceList[0].Roll();
+            diceColors[0] = drawnDiceList[0].GetDiceColor();
+
+            diceOutcomes[1] = drawnDiceList[1].Roll();
+            diceColors[1] = drawnDiceList[1].GetDiceColor();
+
+            diceOutcomes[2] = drawnDiceList[2].Roll();
+            diceColors[2] = drawnDiceList[2].GetDiceColor();
+
+            DiceOutcomeEvaluation(diceOutcomes[0], diceOutcomes[1], diceOutcomes[2]);
+
+
+            
+
+            if (p2ShotgunCount >= 3)
+            {
+                MessageBox.Show("3 shotguns!, turn over.");
+                for (int i = setAsideDice.Count - 1; i >= 0; i--)
+                {
+                    cup._diceList.Add(setAsideDice[i]);
+                    setAsideDice.RemoveAt(i);  // Safely remove items by index
+                }
+
+                drawnDiceList.Clear();
+                setAsideDice.Clear();
+                ResetP2Counts();
+                SwitchPlayer1Turn();
+                Update();
+                NullLabels();
+            }
+            else
+            {
+                Update();
+            }
+
+            
         }
 
         private void buttonPlayer2StopAndScore_Click(object sender, EventArgs e)
         {
+            for (int i = setAsideDice.Count - 1; i >= 0; i--)
+            {
+                cup._diceList.Add(setAsideDice[i]);
+                setAsideDice.RemoveAt(i);  // Safely remove items by index
+            }
+
+            player2.BrainsCount += p2BrainsCount;
+            drawnDiceList.Clear();
+            setAsideDice.Clear();
+            ResetP2Counts();
+            SwitchPlayer1Turn();
+           
+
+            Update();
+            NullLabels();
+
 
         }
 
 
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        ///checks die amount and populates accordingly
+        /// </summary>
+        public void CheckDieAmount()
+        {
+            //removes all null values as theyre not needed anymore
+            drawnDiceList.RemoveAll(item => item == null);
+
+            //check if list contains any dice outcomes, which determines how many dices to roll
+            if (drawnDiceList.Count == 0)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Die die = cup.DrawDie();
+                    drawnDiceList.Add(die);
+                }
+            }
+            else if (drawnDiceList.Count == 2)
+            {
+                Die die = cup.DrawDie();
+                drawnDiceList.Add(die);
+
+            }
+            else if (drawnDiceList.Count == 1)
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    Die die = cup.DrawDie();
+                    drawnDiceList.Add(die);
+                }
+            }
+        }
 
         /// <summary>
         /// evaluates each dice by processing it
@@ -154,6 +272,8 @@ namespace Zombie_Dice_Jeff_Jia
             }
 
             setAsideDice.Add(drawnDiceList[0]);
+
+            //sets null instead of delete so that the list order doesnt change when trying to get the index of the die to set aside
             drawnDiceList[0] = null;
 
 
@@ -182,7 +302,7 @@ namespace Zombie_Dice_Jeff_Jia
                 }
             }
             setAsideDice.Add(drawnDiceList[1]);
-            drawnDiceList[1] = null;
+            drawnDiceList[1] = null; 
 
 
 
@@ -212,12 +332,12 @@ namespace Zombie_Dice_Jeff_Jia
             setAsideDice.Add(drawnDiceList[2]);
             drawnDiceList[2] = null;
 
-
-
-
         }
 
 
+        /// <summary>
+        /// updates grahpics
+        /// </summary>
         public void Update()
         {
             //p1 update
@@ -249,18 +369,29 @@ namespace Zombie_Dice_Jeff_Jia
             }
         }
 
-
+        public void NullLabels()
+        {
+            labelDice1Display.Text = "--";
+            labelDice2Display.Text = "--";
+            labelDice3Display.Text = "--";
+            labelDice1Display.BackColor = Color.Transparent;
+            labelDice2Display.BackColor = Color.Transparent;
+            labelDice3Display.BackColor = Color.Transparent;
+        }
 
         public void ResetP1Counts()
         {
             p1BrainsCount = 0;
             p1ShotgunCount = 0;
+           
         }
 
         public void ResetP2Counts()
         {
             p2BrainsCount = 0;
             p2ShotgunCount = 0;
+
+            
         }
 
         /// <summary>
@@ -278,6 +409,8 @@ namespace Zombie_Dice_Jeff_Jia
             buttonReRoll.Enabled = true;
             buttonStopAndScore.Enabled = true;
 
+           
+
 
         }
         /// <summary>
@@ -294,6 +427,7 @@ namespace Zombie_Dice_Jeff_Jia
             buttonPlayer2StopAndScore.Enabled = true;
             buttonReRoll.Enabled = false;
             buttonStopAndScore.Enabled = false;
+            
         }
 
         

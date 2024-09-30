@@ -42,19 +42,15 @@ namespace Zombie_Dice_Jeff_Jia
         /// Draws 3 dice from the dice list and returns it in a list of 3 dice
         /// </summary>
         /// <returns></returns>
-        public List<Die> DrawDice()
+        public Die DrawDie()
         {
             Random rand = new Random();
-            List<Die> drawnDice = new List<Die>();
+            
 
-            for (int i = 0; i < 3; i++)
-            {
-                int diceIndex = rand.Next(_diceList.Count);
-                drawnDice.Add(_diceList[diceIndex]);
-                _diceList.RemoveAt(diceIndex);
-            }
+            int diceIndex = rand.Next(_diceList.Count);
+           
 
-            return drawnDice;
+            return _diceList[diceIndex];
         }
 
     }
