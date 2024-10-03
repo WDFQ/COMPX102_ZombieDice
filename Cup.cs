@@ -31,26 +31,28 @@ namespace Zombie_Dice_Jeff_Jia
                 RedDie newRedDie = new RedDie();
                 _diceList.Add(newRedDie);
             }
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 YellowDie newYellowDie = new YellowDie();
                 _diceList.Add(newYellowDie);
             }
+
+            Hunk newHunk = new Hunk();
+            _diceList.Add(newHunk);
        }
 
         /// <summary>
-        /// Draws 3 dice from the dice list and returns it in a list of 3 dice
+        /// Draws dice from the dice list and returns it 
         /// </summary>
         /// <returns></returns>
         public Die DrawDie()
         {
             Random rand = new Random();
-            
-
             int diceIndex = rand.Next(_diceList.Count);
-           
+            Die die = _diceList[diceIndex];
+            _diceList.RemoveAt(diceIndex);
 
-            return _diceList[diceIndex];
+            return die;
         }
 
     }

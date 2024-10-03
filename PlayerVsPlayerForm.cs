@@ -24,7 +24,6 @@ namespace Zombie_Dice_Jeff_Jia
         Random rand = new Random();
 
         //current turn variables
-
         string[] diceOutcomes = new string[3];
         Color[] diceColors = new Color[3];
 
@@ -54,9 +53,7 @@ namespace Zombie_Dice_Jeff_Jia
             {
                 Die die = cup.DrawDie();
                 drawnDiceList.Add(die);
-
             }
-
 
             //randomly decides who goes first
             int turnDecider = rand.Next(0, 2);
@@ -90,8 +87,10 @@ namespace Zombie_Dice_Jeff_Jia
             DiceOutcomeEvaluation(diceOutcomes[0], diceOutcomes[1], diceOutcomes[2]);
 
 
+
             if (p1ShotgunCount >= 3)
             {
+                UpdateGraphics();
                 MessageBox.Show("3 shotguns!, turn over.");
                 for (int i = setAsideDice.Count - 1; i >= 0; i--)
                 {
@@ -103,20 +102,24 @@ namespace Zombie_Dice_Jeff_Jia
                 setAsideDice.Clear();
                 ResetP1Counts();
                 SwitchPlayer2Turn();
-                Update();
+                UpdateGraphics();
                 NullLabels();
             }
             else
             {
-                Update();
+                UpdateGraphics();
+
             }
 
-            
+            Debug.WriteLine(cup._diceList.Count);
 
         }
 
         private void buttonStopAndScore_Click(object sender, EventArgs e)
         {
+
+
+
             for (int i = setAsideDice.Count - 1; i >= 0; i--)
             {
                 cup._diceList.Add(setAsideDice[i]);
@@ -124,19 +127,29 @@ namespace Zombie_Dice_Jeff_Jia
             }
 
             player1.BrainsCount += p1BrainsCount;
-            drawnDiceList.Clear();
-            setAsideDice.Clear();
-            ResetP1Counts();
-            SwitchPlayer2Turn();
-            
 
-            Update();
-            NullLabels();
+            if (player1.BrainsCount >= 13)
+            {
+                MessageBox.Show($"player 1 has collected {player1.BrainsCount} brains and won the game");
+
+                Application.Restart();
+            }
+            else
+            {
+                drawnDiceList.Clear();
+                setAsideDice.Clear();
+                ResetP1Counts();
+                SwitchPlayer2Turn();
+                UpdateGraphics();
+                NullLabels();
+            }
+
 
         }
 
         private void buttonPlayer2ReRoll_Click(object sender, EventArgs e)
         {
+            Console.WriteLine(cup._diceList.Count.ToString());
 
             CheckDieAmount();
 
@@ -152,10 +165,9 @@ namespace Zombie_Dice_Jeff_Jia
             DiceOutcomeEvaluation(diceOutcomes[0], diceOutcomes[1], diceOutcomes[2]);
 
 
-            
-
             if (p2ShotgunCount >= 3)
             {
+                UpdateGraphics();
                 MessageBox.Show("3 shotguns!, turn over.");
                 for (int i = setAsideDice.Count - 1; i >= 0; i--)
                 {
@@ -167,19 +179,24 @@ namespace Zombie_Dice_Jeff_Jia
                 setAsideDice.Clear();
                 ResetP2Counts();
                 SwitchPlayer1Turn();
-                Update();
+                UpdateGraphics();
                 NullLabels();
             }
             else
             {
-                Update();
+                UpdateGraphics();
+
             }
 
-            
+            Debug.WriteLine(cup._diceList.Count);
+
         }
 
         private void buttonPlayer2StopAndScore_Click(object sender, EventArgs e)
         {
+
+
+
             for (int i = setAsideDice.Count - 1; i >= 0; i--)
             {
                 cup._diceList.Add(setAsideDice[i]);
@@ -187,14 +204,23 @@ namespace Zombie_Dice_Jeff_Jia
             }
 
             player2.BrainsCount += p2BrainsCount;
-            drawnDiceList.Clear();
-            setAsideDice.Clear();
-            ResetP2Counts();
-            SwitchPlayer1Turn();
-           
 
-            Update();
-            NullLabels();
+            if (player1.BrainsCount >= 13)
+            {
+                MessageBox.Show($"player 1 has collected {player1.BrainsCount} brains and won the game");
+                Application.Restart();
+            }
+            else
+            {
+                drawnDiceList.Clear();
+                setAsideDice.Clear();
+                ResetP2Counts();
+                SwitchPlayer1Turn();
+
+
+                UpdateGraphics();
+                NullLabels();
+            }
 
 
         }
@@ -203,6 +229,9 @@ namespace Zombie_Dice_Jeff_Jia
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+
         /// <summary>
         ///checks die amount and populates accordingly
         /// </summary>
@@ -210,6 +239,28 @@ namespace Zombie_Dice_Jeff_Jia
         {
             //removes all null values as theyre not needed anymore
             drawnDiceList.RemoveAll(item => item == null);
+
+            if (cup._diceList.Count < 3)
+            {
+                //loop from end to beginning to make sure the indexes dont get messed up when removing from lists
+                for (int i = setAsideDice.Count - 1; i >= 0; i--)
+                {
+                    if (setAsideDice[i].LastRoll == "Brain")
+                    {
+                        cup._diceList.Add(setAsideDice[i]);
+                        Debug.WriteLine($"{setAsideDice[i]} was added back into the cup");
+                        setAsideDice.RemoveAt(i);
+
+                    }
+
+                    // stop adding once we have 3 dice in total
+                    if (cup._diceList.Count >= 3)
+                    {
+                        break;
+                    }
+
+                }
+            }
 
             //check if list contains any dice outcomes, which determines how many dices to roll
             if (drawnDiceList.Count == 0)
@@ -256,8 +307,6 @@ namespace Zombie_Dice_Jeff_Jia
                 {
                     p2BrainsCount++;
                 }
-
-
             }
             else if (dice1Outcome == "Shotgun")
             {
@@ -270,9 +319,32 @@ namespace Zombie_Dice_Jeff_Jia
                     p2ShotgunCount++;
                 }
             }
+            else if (dice1Outcome == "DoubleBrain")
+            {
+                if (player1.IsPlayerTurn)
+                {
+                    p1BrainsCount += 2;
+
+                }
+                else
+                {
+                    p2BrainsCount += 2;
+                }
+            }
+            else if (dice1Outcome == "DoubleShotgun")
+            {
+                if (player1.IsPlayerTurn)
+                {
+                    p1ShotgunCount += 2;
+
+                }
+                else
+                {
+                    p2ShotgunCount += 2;
+                }
+            }
 
             setAsideDice.Add(drawnDiceList[0]);
-
             //sets null instead of delete so that the list order doesnt change when trying to get the index of the die to set aside
             drawnDiceList[0] = null;
 
@@ -287,8 +359,6 @@ namespace Zombie_Dice_Jeff_Jia
                 {
                     p2BrainsCount++;
                 }
-
-
             }
             else if (dice2Outcome == "Shotgun")
             {
@@ -301,8 +371,33 @@ namespace Zombie_Dice_Jeff_Jia
                     p2ShotgunCount++;
                 }
             }
+            else if (dice2Outcome == "DoubleBrain")
+            {
+                if (player1.IsPlayerTurn)
+                {
+                    p1BrainsCount += 2;
+
+                }
+                else
+                {
+                    p2BrainsCount += 2;
+                }
+            }
+            else if (dice2Outcome == "DoubleShotgun")
+            {
+                if (player1.IsPlayerTurn)
+                {
+                    p1ShotgunCount += 2;
+
+                }
+                else
+                {
+                    p2ShotgunCount += 2;
+                }
+            }
+
             setAsideDice.Add(drawnDiceList[1]);
-            drawnDiceList[1] = null; 
+            drawnDiceList[1] = null;
 
 
 
@@ -328,6 +423,30 @@ namespace Zombie_Dice_Jeff_Jia
                     p2ShotgunCount++;
                 }
             }
+            else if (dice3Outcome == "DoubleBrain")
+            {
+                if (player1.IsPlayerTurn)
+                {
+                    p1BrainsCount += 2;
+
+                }
+                else
+                {
+                    p2BrainsCount += 2;
+                }
+            }
+            else if (dice3Outcome == "DoubleShotgun")
+            {
+                if (player1.IsPlayerTurn)
+                {
+                    p1ShotgunCount += 2;
+
+                }
+                else
+                {
+                    p2ShotgunCount += 2;
+                }
+            }
 
             setAsideDice.Add(drawnDiceList[2]);
             drawnDiceList[2] = null;
@@ -338,7 +457,7 @@ namespace Zombie_Dice_Jeff_Jia
         /// <summary>
         /// updates grahpics
         /// </summary>
-        public void Update()
+        public void UpdateGraphics()
         {
             //p1 update
             textBoxPlayerBrainsThisRound.Text = p1BrainsCount.ToString();
@@ -350,13 +469,84 @@ namespace Zombie_Dice_Jeff_Jia
             textBoxPlayer2ShotgunCount.Text = p2ShotgunCount.ToString();
             textBoxTotalPlayer2Brains.Text = player2.BrainsCount.ToString();
 
-            //update dice
+            //update dice labels
             labelDice1Display.Text = diceOutcomes[0];
-            labelDice1Display.BackColor = diceColors[0];
             labelDice2Display.Text = diceOutcomes[1];
-            labelDice2Display.BackColor = diceColors[1];
             labelDice3Display.Text = diceOutcomes[2];
-            labelDice3Display.BackColor = diceColors[2];
+            //labelDice1Display.BackColor = diceColors[0];
+            //labelDice2Display.BackColor = diceColors[1];
+            //labelDice3Display.BackColor = diceColors[2];
+
+
+            //update dice images
+            if (diceOutcomes[0] == "Brain")
+            {
+                pictureBoxDice1.Image = Properties.Resources.Brain;
+            }
+            else if (diceOutcomes[0] == "Shotgun")
+            {
+                pictureBoxDice1.Image = Properties.Resources.Shotgun;
+            }
+            else if (diceOutcomes[0] == "DoubleShotgun")
+            {
+                pictureBoxDice1.Image = Properties.Resources.DoubleShotgun;
+            }
+            else if (diceOutcomes[0] == "DoubleBrain")
+            {
+                pictureBoxDice1.Image = Properties.Resources.DoubleBrain;
+            }
+            else
+            {
+                pictureBoxDice1.Image = Properties.Resources.Footsteps;
+            }
+            pictureBoxDice1Color.BackColor = diceColors[0];
+
+
+
+
+            if (diceOutcomes[1] == "Brain")
+            {
+                pictureBoxDice2.Image = Properties.Resources.Brain;
+            }
+            else if (diceOutcomes[1] == "Shotgun")
+            {
+                pictureBoxDice2.Image = Properties.Resources.Shotgun;
+            }
+            else if (diceOutcomes[1] == "DoubleShotgun")
+            {
+                pictureBoxDice2.Image = Properties.Resources.DoubleShotgun;
+            }
+            else if (diceOutcomes[1] == "DoubleBrain")
+            {
+                pictureBoxDice2.Image = Properties.Resources.DoubleBrain;
+            }
+            else
+            {
+                pictureBoxDice2.Image = Properties.Resources.Footsteps;
+            }
+            pictureBoxDice2Color.BackColor = diceColors[1];
+
+            if (diceOutcomes[2] == "Brain")
+            {
+                pictureBoxDice3.Image = Properties.Resources.Brain;
+            }
+            else if (diceOutcomes[2] == "Shotgun")
+            {
+                pictureBoxDice3.Image = Properties.Resources.Shotgun;
+            }
+            else if (diceOutcomes[2] == "DoubleShotgun")
+            {
+                pictureBoxDice3.Image = Properties.Resources.DoubleShotgun;
+            }
+            else if (diceOutcomes[2] == "DoubleBrain")
+            {
+                pictureBoxDice3.Image = Properties.Resources.DoubleBrain;
+            }
+            else
+            {
+                pictureBoxDice3.Image = Properties.Resources.Footsteps;
+            }
+            pictureBoxDice3Color.BackColor = diceColors[2];
 
             //update turn info
             if (player1.IsPlayerTurn)
@@ -371,27 +561,34 @@ namespace Zombie_Dice_Jeff_Jia
 
         public void NullLabels()
         {
+            //Nulls labels
             labelDice1Display.Text = "--";
             labelDice2Display.Text = "--";
             labelDice3Display.Text = "--";
             labelDice1Display.BackColor = Color.Transparent;
             labelDice2Display.BackColor = Color.Transparent;
             labelDice3Display.BackColor = Color.Transparent;
+
+
+            //nulls pictureboxes
+            pictureBoxDice1.Image = null;
+            pictureBoxDice2.Image = null;
+            pictureBoxDice3.Image = null;
+            pictureBoxDice1Color.BackColor = Color.Transparent;
+            pictureBoxDice2Color.BackColor = Color.Transparent;
+            pictureBoxDice3Color.BackColor = Color.Transparent;
         }
 
         public void ResetP1Counts()
         {
             p1BrainsCount = 0;
             p1ShotgunCount = 0;
-           
         }
 
         public void ResetP2Counts()
         {
             p2BrainsCount = 0;
             p2ShotgunCount = 0;
-
-            
         }
 
         /// <summary>
@@ -408,11 +605,9 @@ namespace Zombie_Dice_Jeff_Jia
             buttonPlayer2StopAndScore.Enabled = false;
             buttonReRoll.Enabled = true;
             buttonStopAndScore.Enabled = true;
-
-           
-
-
         }
+
+
         /// <summary>
         /// switches to player 2's turn
         /// </summary>
@@ -427,9 +622,6 @@ namespace Zombie_Dice_Jeff_Jia
             buttonPlayer2StopAndScore.Enabled = true;
             buttonReRoll.Enabled = false;
             buttonStopAndScore.Enabled = false;
-            
         }
-
-        
     }
 }

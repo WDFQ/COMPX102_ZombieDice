@@ -48,11 +48,25 @@
             labelDice2Display = new Label();
             labelDice3Display = new Label();
             labelCurrentTurnDisplay = new Label();
+            pictureBoxDice1Color = new PictureBox();
+            pictureBoxDice2 = new PictureBox();
+            pictureBoxDice1 = new PictureBox();
+            pictureBoxDice2Color = new PictureBox();
+            pictureBoxDice3Color = new PictureBox();
+            pictureBoxDice3 = new PictureBox();
+            label7 = new Label();
+            label8 = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice1Color).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice2Color).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice3Color).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice3).BeginInit();
             SuspendLayout();
             // 
             // textBoxTotalPlayer2Brains
             // 
-            textBoxTotalPlayer2Brains.Location = new Point(1085, 140);
+            textBoxTotalPlayer2Brains.Location = new Point(1429, 150);
             textBoxTotalPlayer2Brains.Margin = new Padding(5);
             textBoxTotalPlayer2Brains.Name = "textBoxTotalPlayer2Brains";
             textBoxTotalPlayer2Brains.ReadOnly = true;
@@ -119,10 +133,10 @@
             // buttonStopAndScore
             // 
             buttonStopAndScore.Enabled = false;
-            buttonStopAndScore.Location = new Point(116, 632);
+            buttonStopAndScore.Location = new Point(14, 940);
             buttonStopAndScore.Margin = new Padding(5);
             buttonStopAndScore.Name = "buttonStopAndScore";
-            buttonStopAndScore.Size = new Size(205, 58);
+            buttonStopAndScore.Size = new Size(401, 58);
             buttonStopAndScore.TabIndex = 11;
             buttonStopAndScore.Text = "Stop and Score";
             buttonStopAndScore.UseVisualStyleBackColor = true;
@@ -131,10 +145,10 @@
             // buttonReRoll
             // 
             buttonReRoll.Enabled = false;
-            buttonReRoll.Location = new Point(116, 504);
+            buttonReRoll.Location = new Point(14, 812);
             buttonReRoll.Margin = new Padding(5);
             buttonReRoll.Name = "buttonReRoll";
-            buttonReRoll.Size = new Size(205, 118);
+            buttonReRoll.Size = new Size(401, 118);
             buttonReRoll.TabIndex = 10;
             buttonReRoll.Text = "Roll";
             buttonReRoll.UseVisualStyleBackColor = true;
@@ -143,7 +157,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(773, 140);
+            label5.Location = new Point(1117, 150);
             label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
             label5.Size = new Size(225, 32);
@@ -153,7 +167,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(773, 76);
+            label3.Location = new Point(1117, 86);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
             label3.Size = new Size(304, 32);
@@ -162,7 +176,7 @@
             // 
             // textBoxPlayer2BrainsThisRound
             // 
-            textBoxPlayer2BrainsThisRound.Location = new Point(1085, 71);
+            textBoxPlayer2BrainsThisRound.Location = new Point(1429, 81);
             textBoxPlayer2BrainsThisRound.Margin = new Padding(5);
             textBoxPlayer2BrainsThisRound.Name = "textBoxPlayer2BrainsThisRound";
             textBoxPlayer2BrainsThisRound.ReadOnly = true;
@@ -172,7 +186,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(773, 23);
+            label6.Location = new Point(1117, 33);
             label6.Margin = new Padding(5, 0, 5, 0);
             label6.Name = "label6";
             label6.Size = new Size(182, 32);
@@ -181,7 +195,7 @@
             // 
             // textBoxPlayer2ShotgunCount
             // 
-            textBoxPlayer2ShotgunCount.Location = new Point(1085, 12);
+            textBoxPlayer2ShotgunCount.Location = new Point(1429, 22);
             textBoxPlayer2ShotgunCount.Margin = new Padding(5);
             textBoxPlayer2ShotgunCount.Name = "textBoxPlayer2ShotgunCount";
             textBoxPlayer2ShotgunCount.ReadOnly = true;
@@ -191,10 +205,10 @@
             // buttonPlayer2StopAndScore
             // 
             buttonPlayer2StopAndScore.Enabled = false;
-            buttonPlayer2StopAndScore.Location = new Point(983, 632);
+            buttonPlayer2StopAndScore.Location = new Point(1228, 940);
             buttonPlayer2StopAndScore.Margin = new Padding(5);
             buttonPlayer2StopAndScore.Name = "buttonPlayer2StopAndScore";
-            buttonPlayer2StopAndScore.Size = new Size(205, 58);
+            buttonPlayer2StopAndScore.Size = new Size(429, 58);
             buttonPlayer2StopAndScore.TabIndex = 26;
             buttonPlayer2StopAndScore.Text = "Stop and Score";
             buttonPlayer2StopAndScore.UseVisualStyleBackColor = true;
@@ -203,10 +217,10 @@
             // buttonPlayer2ReRoll
             // 
             buttonPlayer2ReRoll.Enabled = false;
-            buttonPlayer2ReRoll.Location = new Point(983, 504);
+            buttonPlayer2ReRoll.Location = new Point(1228, 812);
             buttonPlayer2ReRoll.Margin = new Padding(5);
             buttonPlayer2ReRoll.Name = "buttonPlayer2ReRoll";
-            buttonPlayer2ReRoll.Size = new Size(205, 118);
+            buttonPlayer2ReRoll.Size = new Size(429, 118);
             buttonPlayer2ReRoll.TabIndex = 25;
             buttonPlayer2ReRoll.Text = "Roll";
             buttonPlayer2ReRoll.UseVisualStyleBackColor = true;
@@ -216,47 +230,130 @@
             // 
             labelDice1Display.AutoSize = true;
             labelDice1Display.Font = new Font("Unispace", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelDice1Display.Location = new Point(128, 317);
+            labelDice1Display.Location = new Point(131, 601);
             labelDice1Display.Name = "labelDice1Display";
             labelDice1Display.Size = new Size(91, 64);
             labelDice1Display.TabIndex = 27;
             labelDice1Display.Text = "--";
+            labelDice1Display.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // labelDice2Display
             // 
             labelDice2Display.AutoSize = true;
             labelDice2Display.Font = new Font("Unispace", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelDice2Display.Location = new Point(505, 317);
+            labelDice2Display.Location = new Point(712, 603);
             labelDice2Display.Name = "labelDice2Display";
             labelDice2Display.Size = new Size(91, 64);
             labelDice2Display.TabIndex = 28;
             labelDice2Display.Text = "--";
+            labelDice2Display.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // labelDice3Display
             // 
             labelDice3Display.AutoSize = true;
             labelDice3Display.Font = new Font("Unispace", 19.875F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            labelDice3Display.Location = new Point(881, 317);
+            labelDice3Display.Location = new Point(1286, 601);
             labelDice3Display.Name = "labelDice3Display";
             labelDice3Display.Size = new Size(91, 64);
             labelDice3Display.TabIndex = 29;
             labelDice3Display.Text = "--";
+            labelDice3Display.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // labelCurrentTurnDisplay
             // 
             labelCurrentTurnDisplay.AutoSize = true;
             labelCurrentTurnDisplay.Font = new Font("Unispace", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point);
-            labelCurrentTurnDisplay.Location = new Point(427, 640);
+            labelCurrentTurnDisplay.Location = new Point(668, 891);
             labelCurrentTurnDisplay.Name = "labelCurrentTurnDisplay";
             labelCurrentTurnDisplay.Size = new Size(337, 39);
             labelCurrentTurnDisplay.TabIndex = 30;
             labelCurrentTurnDisplay.Text = "Current Turn: --";
             // 
+            // pictureBoxDice1Color
+            // 
+            pictureBoxDice1Color.BackColor = Color.Transparent;
+            pictureBoxDice1Color.Location = new Point(164, 450);
+            pictureBoxDice1Color.Name = "pictureBoxDice1Color";
+            pictureBoxDice1Color.Size = new Size(178, 150);
+            pictureBoxDice1Color.TabIndex = 32;
+            pictureBoxDice1Color.TabStop = false;
+            // 
+            // pictureBoxDice2
+            // 
+            pictureBoxDice2.Location = new Point(766, 470);
+            pictureBoxDice2.Name = "pictureBoxDice2";
+            pictureBoxDice2.Size = new Size(130, 112);
+            pictureBoxDice2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxDice2.TabIndex = 33;
+            pictureBoxDice2.TabStop = false;
+            // 
+            // pictureBoxDice1
+            // 
+            pictureBoxDice1.Location = new Point(191, 468);
+            pictureBoxDice1.Name = "pictureBoxDice1";
+            pictureBoxDice1.Size = new Size(130, 112);
+            pictureBoxDice1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxDice1.TabIndex = 35;
+            pictureBoxDice1.TabStop = false;
+            // 
+            // pictureBoxDice2Color
+            // 
+            pictureBoxDice2Color.BackColor = Color.Transparent;
+            pictureBoxDice2Color.Location = new Point(743, 450);
+            pictureBoxDice2Color.Name = "pictureBoxDice2Color";
+            pictureBoxDice2Color.Size = new Size(178, 150);
+            pictureBoxDice2Color.TabIndex = 36;
+            pictureBoxDice2Color.TabStop = false;
+            // 
+            // pictureBoxDice3Color
+            // 
+            pictureBoxDice3Color.BackColor = Color.Transparent;
+            pictureBoxDice3Color.Location = new Point(1301, 450);
+            pictureBoxDice3Color.Name = "pictureBoxDice3Color";
+            pictureBoxDice3Color.Size = new Size(178, 150);
+            pictureBoxDice3Color.TabIndex = 37;
+            pictureBoxDice3Color.TabStop = false;
+            // 
+            // pictureBoxDice3
+            // 
+            pictureBoxDice3.Location = new Point(1327, 468);
+            pictureBoxDice3.Name = "pictureBoxDice3";
+            pictureBoxDice3.Size = new Size(130, 112);
+            pictureBoxDice3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxDice3.TabIndex = 38;
+            pictureBoxDice3.TabStop = false;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Unispace", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(25, 757);
+            label7.Name = "label7";
+            label7.Size = new Size(197, 39);
+            label7.TabIndex = 39;
+            label7.Text = "Player 1:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Unispace", 11.9999981F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.Location = new Point(1228, 757);
+            label8.Name = "label8";
+            label8.Size = new Size(197, 39);
+            label8.TabIndex = 40;
+            label8.Text = "Player 2:";
+            // 
             // PlayerVsPlayerForm
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 710);
+            ClientSize = new Size(1666, 1016);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(pictureBoxDice3);
+            Controls.Add(pictureBoxDice1);
+            Controls.Add(pictureBoxDice2);
+            Controls.Add(pictureBoxDice1Color);
             Controls.Add(labelCurrentTurnDisplay);
             Controls.Add(labelDice3Display);
             Controls.Add(labelDice2Display);
@@ -277,8 +374,16 @@
             Controls.Add(textBoxPlayerShotGunCount);
             Controls.Add(buttonStopAndScore);
             Controls.Add(buttonReRoll);
+            Controls.Add(pictureBoxDice2Color);
+            Controls.Add(pictureBoxDice3Color);
             Name = "PlayerVsPlayerForm";
             Text = " ";
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice1Color).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice2Color).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice3Color).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDice3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -305,5 +410,13 @@
         private Label labelDice2Display;
         private Label labelDice3Display;
         private Label labelCurrentTurnDisplay;
+        private PictureBox pictureBoxDice1Color;
+        private PictureBox pictureBoxDice2;
+        private PictureBox pictureBoxDice1;
+        private PictureBox pictureBoxDice2Color;
+        private PictureBox pictureBoxDice3Color;
+        private PictureBox pictureBoxDice3;
+        private Label label7;
+        private Label label8;
     }
 }

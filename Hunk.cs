@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace Zombie_Dice_Jeff_Jia
 {
-    class GreenDie : Die
+    class Hunk : Die
     {
-        private string[] _faces = { "Brain", "Brain", "Brain", "Footsteps", "Footsteps", "Shotgun" };
-        private Color _diceColor = Color.Green;
-            
+
+        private string[] _faces = { "Feet", "Feet", "Shotgun", "Shotgun", "DoubleShotgun", "DoubleBrain" };
+        private Color _diceColor = Color.Black;
+
         public Color DiceColor
         {
             get { return _diceColor; }
         }
 
 
-        public GreenDie()
+        public Hunk()
         {
         }
 
@@ -34,8 +35,5 @@ namespace Zombie_Dice_Jeff_Jia
         {
             return DiceColor;
         }
-
-
-
     }
 }

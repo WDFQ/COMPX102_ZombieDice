@@ -25,7 +25,8 @@ namespace Zombie_Dice_Jeff_Jia
         {
             Random rand = new Random();
             int result = rand.Next(0, _faces.Length);  // Random index from 0 to 5
-            return _faces[result];
+            LastRoll = _faces[result];
+            return LastRoll;
         }
 
         public override Color GetDiceColor()
