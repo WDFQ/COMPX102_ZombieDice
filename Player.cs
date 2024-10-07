@@ -17,7 +17,6 @@ namespace Zombie_Dice_Jeff_Jia
 
 
         //Properties
-
         public int TurnBrainCount
         {
             get { return _turnBrainCount; }
@@ -41,7 +40,7 @@ namespace Zombie_Dice_Jeff_Jia
         }
 
         /// <summary>
-        /// Constructor
+        /// Constructor initilises all values to 0 and false
         /// </summary>
         public Player() 
         {

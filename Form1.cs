@@ -8,6 +8,11 @@ namespace Zombie_Dice_Jeff_Jia
 
         }
 
+        /// <summary>
+        /// opens player vs ai form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonVsAI_Click(object sender, EventArgs e)
         {
             // Create an instance of the new form 
@@ -19,6 +24,11 @@ namespace Zombie_Dice_Jeff_Jia
             this.Close();
         }
 
+        /// <summary>
+        /// opens player vs player form 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonVsPlayer_Click(object sender, EventArgs e)
         {
             // Create an instance of the new form 

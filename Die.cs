@@ -9,10 +9,10 @@ namespace Zombie_Dice_Jeff_Jia
     public abstract class Die
     {
         //fields
-        protected string _lastRoll;
+        protected DiceResult _lastRoll;
 
         //properties
-        public string LastRoll
+        public DiceResult LastRoll
         {
             get { return _lastRoll; }
             set { _lastRoll = value; }
@@ -23,8 +23,17 @@ namespace Zombie_Dice_Jeff_Jia
         {
         }
 
+        /// <summary>
+        /// Randomly generates an outcome from the list of possible outcomes and returns it
+        /// </summary>
+        /// <returns>The result of the dice roll</returns>
+        public abstract DiceResult Roll();
 
-        public abstract string Roll();
+
+        /// <summary>
+        /// gets the dice color and returns it
+        /// </summary>
+        /// <returns>dice color</returns>
         public abstract Color GetDiceColor();
        
     }
