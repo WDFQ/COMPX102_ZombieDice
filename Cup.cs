@@ -19,7 +19,7 @@ namespace Zombie_Dice_Jeff_Jia
         /// <summary>
         /// populates the cup with 6 green dies, 3 red and 4 yellow
         /// </summary>
-       public void AddDices()
+       public void AddDice()
        {
             for (int i = 0; i < 6; i++)
             {
