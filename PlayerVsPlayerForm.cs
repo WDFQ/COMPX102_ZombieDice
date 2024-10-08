@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Windows.Forms.Design;
 
 namespace Zombie_Dice_Jeff_Jia
 {
@@ -128,8 +130,17 @@ namespace Zombie_Dice_Jeff_Jia
             //check if current player has 13 or more brains
             if (currentPlayer.BrainsCount >= 13)
             {
-                //display game end message and restarts
-                MessageBox.Show($"player 2 has collected {currentPlayer.BrainsCount} brains and won the game");
+                if (currentPlayer == player2)
+                {
+                    //display game end message and restarts
+                    MessageBox.Show($"Player 2 has collected {currentPlayer.BrainsCount} brains and won the game");
+                    
+                }
+                else
+                {
+                    //display game end message and restarts
+                    MessageBox.Show($"Player 1 has collected {currentPlayer.BrainsCount} brains and won the game");
+                }
                 Application.Restart();
             }
             else
@@ -217,7 +228,6 @@ namespace Zombie_Dice_Jeff_Jia
                         cup._diceList.Add(setAsideDice[i]); //adds brain die back to cup
                         Debug.WriteLine($"{setAsideDice[i]} was added back into the cup");
                         setAsideDice.RemoveAt(i); //remove this brain die from the set aside list
-
                     }
 
                     // stop adding once we have 3 dice in total
@@ -225,7 +235,6 @@ namespace Zombie_Dice_Jeff_Jia
                     {
                         break;
                     }
-
                 }
             }
 
@@ -250,16 +259,63 @@ namespace Zombie_Dice_Jeff_Jia
                 //checks for footsteps outcome, if its footsteps, dont set it aside
                 if (diceOutcomes[i] != DiceResult.Footsteps)
                 {
+                    
                     //check for different types of dice and apply the corrosponding conditions
                     if (diceOutcomes[i] == DiceResult.Brain)
                     {
                         currentPlayer.TurnBrainCount++;
-                        
                     }
                     else if (diceOutcomes[i] == DiceResult.Shotgun)
                     {
                         currentPlayer.TurnShotgunCount++;
-                        
+
+                        //Check if the shotgun is from hottie
+                        if (drawnDiceList[i] is Hottie)
+                        {   
+                            //loop through setaside dice to see if we can find hunk
+                            foreach (var item in setAsideDice)
+                            {
+                                //if we find hunk and the last roll is a brain
+                                if (item is Hunk && item.LastRoll == DiceResult.Brain || item.LastRoll == DiceResult.DoubleBrain)
+                                {
+                                    //check how many brain to take away from player
+                                    if (item.LastRoll == DiceResult.DoubleBrain)
+                                    {
+                                        //take away two brains if last roll is doublebrain
+                                        currentPlayer.TurnBrainCount -= 2;
+                                    }
+                                    else if (item.LastRoll == DiceResult.Brain)
+                                    {
+                                        //take away one brain if lat roll is single
+                                        currentPlayer.TurnBrainCount--;
+                                    }
+
+                                    //remove the die from the list and add it back into the cup
+                                    cup._diceList.Add(item);
+                                    setAsideDice.Remove(item);
+                                    MessageBox.Show("The Hunk has been rescued by the Hottie!");
+                                    break;
+                                }
+                            }
+                        }
+                        else if (drawnDiceList[i] is Hunk)
+                        {
+                            //
+                            foreach (var item in setAsideDice)
+                            {
+                                if (item is Hottie && item.LastRoll == DiceResult.Brain)
+                                {
+                                    currentPlayer.TurnBrainCount--;
+
+                                    //remove the die from the list and add it back into the cup
+                                    cup._diceList.Add(item);
+                                    setAsideDice.Remove(item);
+                                    MessageBox.Show("The Hottie has been rescued by the Hunk!");
+                                    break;
+                                }
+                            }
+                        }
+
                     }
                     else if (diceOutcomes[i] == DiceResult.DoubleBrain)
                     {

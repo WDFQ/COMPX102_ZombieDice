@@ -50,5 +50,7 @@ namespace Zombie_Dice_Jeff_Jia
             TurnShotgunCount = 0;
         }
 
+
+        
     }
 }

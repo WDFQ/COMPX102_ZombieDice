@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Zombie_Dice_Jeff_Jia
 {
-    class Hunk : Die
+    class Hottie : Die
     {
         //fields
         //enum used for dice outcomes
-        private DiceResult[] _faces = { DiceResult.Footsteps, DiceResult.Footsteps, DiceResult.Shotgun, DiceResult.Shotgun, DiceResult.DoubleShotgun, DiceResult.DoubleBrain};
-        private Color _diceColor = Color.Black;
-       
+        private DiceResult[] _faces = { DiceResult.Footsteps, DiceResult.Footsteps, DiceResult.Footsteps, DiceResult.Shotgun, DiceResult.Shotgun, DiceResult.Brain };
+        private Color _diceColor = Color.Pink;
+      
 
-        
 
-        /// <summary>
+
+        /// <summary>s
         /// can only get the dice color not set it
         /// </summary>
         public Color DiceColor
@@ -26,12 +25,15 @@ namespace Zombie_Dice_Jeff_Jia
         }
 
 
+
+
+
         /// <summary>
         /// constructor
         /// </summary>
-        public Hunk()
+        public Hottie()
         {
-
+           
         }
 
         /// <summary>
@@ -56,3 +58,4 @@ namespace Zombie_Dice_Jeff_Jia
         }
     }
 }
+

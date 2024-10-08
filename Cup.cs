@@ -22,7 +22,7 @@ namespace Zombie_Dice_Jeff_Jia
 
 
         /// <summary>
-        /// populates the cup with 6 green dies, 3 red, 3 yellow and 1 hunk die
+        /// populates the cup with 6 green dies, 3 red, 2 yellow, 1 hunk die, and one hottie die
         /// </summary>
        public void AddDice()
        {
@@ -36,7 +36,7 @@ namespace Zombie_Dice_Jeff_Jia
                 RedDie newRedDie = new RedDie();
                 _diceList.Add(newRedDie);
             }
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 YellowDie newYellowDie = new YellowDie();
                 _diceList.Add(newYellowDie);
@@ -44,6 +44,9 @@ namespace Zombie_Dice_Jeff_Jia
 
             Hunk newHunk = new Hunk();
             _diceList.Add(newHunk);
+
+            Hottie newHottie = new Hottie();
+            _diceList.Add(newHottie);
        }
 
         /// <summary>

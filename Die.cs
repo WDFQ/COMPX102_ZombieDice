@@ -18,6 +18,7 @@ namespace Zombie_Dice_Jeff_Jia
             set { _lastRoll = value; }
         }
 
+
         //Constructor
         public Die()
         {
